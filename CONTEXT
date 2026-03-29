@@ -1,0 +1,32 @@
+## Architecture
+
+**Backend** — 4 REST endpoints in `todo-app/server.js`:
+- `GET /todos` — fetch all todos
+- `POST /todos` — create todo
+- `PATCH /todos/:id` — update todo (title or completed)
+- `DELETE /todos/:id` — delete todo
+
+**Database schema** (`todo-app/prisma/schema.prisma`):
+```prisma
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+```
+
+**Frontend** — single page at `todo-frontend/app/page.js`, client component using React hooks.
+
+---
+
+## Code Style Rules
+
+- **Backend**: Keep it simple — async/await handlers, no extra middleware or abstraction layers
+- **Backend**: Use Prisma for all DB access — no raw SQL
+- **Frontend**: Tailwind CSS is available — use it for styling
+- **Auth**: No auth currently — will be added soon
+
+## Things to Avoid
+- Don't over-engineer the Express API
+- Don't add features not explicitly requested
